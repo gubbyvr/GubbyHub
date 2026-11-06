@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GubbyHub | VR Modding Hub</title>
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --container-bg: #1f2833;
+            --text-color: #c5c6c7;
+            --accent-neon: #45f3ff;
+            --accent-purple: #8a2be2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px var(--accent-neon);
+        }
+
+        header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .hub-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--container-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .tabs-nav {
+            display: flex;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            background: rgba(69, 243, 255, 0.1);
+            color: var(--accent-neon);
+        }
+
+        .tab-btn.active {
+            background: var(--container-bg);
+            color: var(--accent-neon);
+            border-bottom: 3px solid var(--accent-neon);
+        }
+
+        .content-panel {
+            padding: 30px;
+            display: none;
+        }
+
+        .content-panel.active {
+            display: block;
+        }
+
+        .content-panel h2 {
+            color: #fff;
+            margin-top: 0;
+        }
+
+        .mod-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .mod-list li {
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GubbyHub</h1>
+        <p>The Ultimate Destination for VR Modding & Tools</p>
+    </header>
+
+    <div class="hub-container">
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab(event, 'home')">Home</button>
+            <button class="tab-btn" onclick="switchTab(event, 'mods')">VR Mods</button>
+            <!-- Singularity Tab (Opens GitHub Releases in a New Window) -->
+            <button class="tab-btn" onclick="window.open('https://github.com', '_blank')">Singularity ↗</button>
+        </nav>
+
+        <!-- Tab Contents -->
+        <div id="home" class="content-panel active">
+            <h2>Welcome to GubbyHub</h2>
+            <p>Select a tab above to browse available modifications, software exploits, and custom performance packages tailored for your standalone and PC VR headsets.</p>
+        </div>
+
+        <div id="mods" class="content-panel">
+            <h2>Featured VR Mods</h2>
+            <ul class="mod-list">
+                <li><strong>Beat Saber Custom Mapping Tool v2.4</strong> - Easily map tracks inside VR.</li>
+                <li><strong>Gorilla Tag Visual Enhancer</strong> - Inject post-processing bloom and custom textures.</li>
+                <li><strong>Quest Performance Customizer</strong> - Tweak hidden CPU/GPU clock stages.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(event, tabId) {
+            const panels = document.querySelectorAll('.content-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
